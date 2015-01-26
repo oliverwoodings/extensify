@@ -1,0 +1,36 @@
+{
+  "name": "jsxify",
+  "version": "1.0.0",
+  "description": "Rewrite .jsx files without the file extension in browserify",
+  "main": "lib/jsxify.js",
+  "directories": {
+    "test": "test"
+  },
+  "keywords": [
+    "browserify-transform",
+    "jsx"
+  ],
+  "scripts": {
+    "test": "make test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/oliverwoodings/jsxify.git"
+  },
+  "author": "Oliver Woodings (https://github.com/oliverwoodings)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/oliverwoodings/jsxify/issues"
+  },
+  "homepage": "https://github.com/oliverwoodings/jsxify",
+  "dependencies": {
+    "browserify-transform-tools": "^1.2.2"
+  },
+  "devDependencies": {
+    "browserify": "^8.1.1",
+    "chai": "^1.10.0",
+    "jscs": "^1.10.0",
+    "jshint": "^2.6.0",
+    "mocha": "^2.1.0"
+  }
+}
