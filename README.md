@@ -1,10 +1,11 @@
-# jsxify [![Build Status](https://travis-ci.org/oliverwoodings/jsxify.svg?branch=master)](https://travis-ci.org/oliverwoodings/jsxify)
+# extensify [![Build Status](https://travis-ci.org/oliverwoodings/extensify.svg?branch=master)](https://travis-ci.org/oliverwoodings/extensify)
 
-Jsxify is a [browserify](https://github.com/substack/node-browserify) transform that allows you to require `.jsx` files without specifying the file extension. It is built using the [browserify-transform-tools](https://github.com/benbria/browserify-transform-tools).
+Extensify is a [browserify](https://github.com/substack/node-browserify) transform that allows you to require non-standard files (such as `.jsx`) without specifying the file extension. It is built using the [browserify-transform-tools](https://github.com/benbria/browserify-transform-tools).
 
-* Clean up your JSX require calls!
+* Clean up your require calls!
+* Supports all file extensions
 * Keep the `.jsx` extension on your files so IDEs use correct syntax highlighting and linting
-* Works with directories - require a directory and it will automatically convert it to require `index.jsx`
+* Works with directories - require a directory and it will automatically convert it
 
 
 ## Purpose
@@ -21,7 +22,7 @@ Sadly, you cannot have all these three things:
 * If you don't have the file extension as `.jsx`, it is likely that your IDE won't correctly identify the source as JSX and will highlight everything as an error
 * If you name your JSX file `.js` your code becomes less explicit
 
-Jsxify fixes this. It allows you to require `.jsx` files without the extension by rewriting the require calls before browserify bundles your project together, making it possible to do this:
+Extensify fixes this. It allows you to require non-standard files without the extension by rewriting the require calls before browserify bundles your project together, making it possible to do this:
 ```js
 var HomeComponent = require("./components/home");
 ```
@@ -33,12 +34,41 @@ var HomeComponent = require("./components/home.jsx");
 
 ## Installation
 
-`npm install --save-dev jsxify`
+`npm install --save-dev extensify`
 
 
 ## Usage
 
-Jsxify is zero-configuration, so just include it as a regular transform in your build process. If you are using modules such as pkgify, aliasify or remapify make sure jsxify runs after them in the transform process.
+Usage is identical to any other `browserify-transform-tools` transforms. If you are using modules such as pkgify, aliasify or remapify make sure extensify runs after them in the transform process.
+
+#### package.json
+Directly in package.json:
+
+```
+{
+  "extensify": {
+    "extensions": ["jsx"]
+  }
+}
+```
+
+or using referencing a separate JS file in package.json:
+
+```
+{
+  "extensify": "./pkgifyConfig.js"
+}
+```
+
+#### Browserify API
+
+```js
+var extensify = require("extensify");
+
+b.transform(extensify, {
+  extensions: ["jsx"]
+});
+```
 
 
 ## Contributing

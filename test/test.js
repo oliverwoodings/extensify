@@ -1,20 +1,23 @@
 var expect = require("chai").expect;
 var runTransform = require("browserify-transform-tools").runTransform;
-var jsxify = require("../lib/jsxify.js");
 var path = require("path");
+
+var extensify = require("../lib/extensify.js").configure({
+    extensions: ["jsx"]
+});
 
 function getFixturePath(fixture) {
   return path.resolve(__dirname, "fixtures", fixture);
 }
 
-describe("Jsxify", function () {
+describe("Extensify", function () {
 
-  describe("when a jsx file is required without the extension", function () {
+  describe("when a file is required without the extension", function () {
 
     var fixturePath = getFixturePath("file");
     var err, result;
     before(function (done) {
-      runTransform(jsxify, path.join(fixturePath, "index.js"), function (_err, _result) {
+      runTransform(extensify, path.join(fixturePath, "index.js"), function (_err, _result) {
         err = _err;
         result = _result;
         done();
@@ -37,7 +40,7 @@ describe("Jsxify", function () {
     var fixturePath = getFixturePath("filedirectory");
     var err, result;
     before(function (done) {
-      runTransform(jsxify, path.join(fixturePath, "index.js"), function (_err, _result) {
+      runTransform(extensify, path.join(fixturePath, "index.js"), function (_err, _result) {
         err = _err;
         result = _result;
         done();
@@ -59,7 +62,7 @@ describe("Jsxify", function () {
     var fixturePath = getFixturePath("directory");
     var err, result;
     before(function (done) {
-      runTransform(jsxify, path.join(fixturePath, "index.js"), function (_err, _result) {
+      runTransform(extensify, path.join(fixturePath, "index.js"), function (_err, _result) {
         err = _err;
         result = _result;
         done();
