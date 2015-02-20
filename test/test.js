@@ -30,7 +30,7 @@ describe("Extensify", function () {
 
     it("should rewrite the require call to include the extension", function () {
       expect(err).to.not.exist;
-      expect(result).to.equal("require(\"" + path.join(fixturePath, "test.jsx") + "\");");
+      expect(result).to.equal("require(\"./test.jsx\");");
     });
 
   });
@@ -52,7 +52,7 @@ describe("Extensify", function () {
     });
 
     it("should prioritise the file", function () {
-      expect(result).to.equal("require(\"" + path.join(fixturePath, "test.jsx") + "\");");
+      expect(result).to.equal("require(\"./test.jsx\");");
     });
 
   });
@@ -74,7 +74,7 @@ describe("Extensify", function () {
     });
 
     it("should rewrite the require call to include index.jsx", function () {
-      expect(result).to.equal("require(\"" + path.join(fixturePath, "test", "index.jsx") + "\");");
+      expect(result).to.equal("require(\"./test/index.jsx\");");
     });
 
   });
