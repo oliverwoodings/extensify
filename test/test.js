@@ -3,7 +3,7 @@ var runTransform = require("browserify-transform-tools").runTransform;
 var path = require("path");
 
 var extensify = require("../lib/extensify.js").configure({
-    extensions: ["jsx"]
+  extensions: ["jsx"]
 });
 
 function getFixturePath(fixture) {
@@ -75,6 +75,28 @@ describe("Extensify", function () {
 
     it("should rewrite the require call to include index.jsx", function () {
       expect(result).to.equal("require(\"./test/index.jsx\");");
+    });
+
+  });
+
+  describe("when dot is required", function () {
+
+    var fixturePath = getFixturePath("dot");
+    var err, result;
+    before(function (done) {
+      runTransform(extensify, path.join(fixturePath, "test.js"), function (_err, _result) {
+        err = _err;
+        result = _result;
+        done();
+      });
+    });
+
+    it("should not error", function () {
+      expect(err).to.not.exist;
+    });
+
+    it("should rewrite the require call to include index.jsx", function () {
+      expect(result).to.equal("require(\"./index.jsx\");\n");
     });
 
   });
