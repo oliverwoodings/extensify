@@ -1,6 +1,6 @@
 {
   "name": "extensify",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Rewrite .jsx files without the file extension in browserify",
   "main": "lib/extensify.js",
   "directories": {
